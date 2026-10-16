@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Social Account Manager</title>
+<style>
+:root{color-scheme:dark;--bg:#0b1020;--panel:#131b2e;--panel2:#0f1728;--line:#273450;--text:#eef3ff;--muted:#9eacc8;--blue:#7cafff;--green:#71ddb0;--red:#ff8a9b}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at top,#172644 0,#0b1020 52%);color:var(--text);font:15px/1.45 system-ui,-apple-system,Segoe UI,sans-serif}
+.wrap{max-width:1100px;margin:auto;padding:22px}.head{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}.brand{display:flex;gap:12px;align-items:center}.logo{width:48px;height:48px;border-radius:15px;display:grid;place-items:center;background:linear-gradient(135deg,#4c8dff,#8c70ff);font-size:24px}.eyebrow{font-size:11px;color:var(--green);font-weight:800;letter-spacing:1.5px}.head h1{font-size:24px;margin:2px 0}.muted{color:var(--muted)}.pill{border:1px solid var(--line);border-radius:30px;padding:6px 10px;color:var(--muted);font-size:12px}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:22px 0}.stat,.panel{background:linear-gradient(145deg,rgba(23,33,55,.96),rgba(16,24,42,.96));border:1px solid var(--line);border-radius:18px}.stat{padding:16px}.stat .label{font-size:12px;color:var(--muted)}.stat strong{font-size:29px;display:block;margin:7px 0}.stat .hint{font-size:12px;color:var(--muted)}
+.layout{display:grid;grid-template-columns:340px 1fr;gap:16px;align-items:start}.panel{padding:18px}.panel h2{font-size:17px;margin:0 0 14px}.field{margin:12px 0}.field label{display:block;font-size:12px;color:var(--muted);margin-bottom:6px}input,select,textarea{width:100%;background:var(--panel2);color:var(--text);border:1px solid var(--line);border-radius:10px;padding:11px 12px;font:inherit;outline:none}input:focus,select:focus,textarea:focus{border-color:var(--blue)}textarea{min-height:86px;resize:vertical}.btn{border:0;border-radius:10px;padding:10px 13px;font:700 13px system-ui;cursor:pointer;background:var(--blue);color:#071126}.btn.secondary{background:#263550;color:var(--text);border:1px solid #354664}.btn.danger{background:#482432;color:#ffdce3}.btn.full{width:100%;margin-top:8px}.toolbar{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}.toolbar input{flex:1;min-width:130px}.toolbar select{width:auto;min-width:130px}.cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:11px}.account{background:#10182a;border:1px solid var(--line);border-radius:14px;padding:14px;min-width:0}.account-top{display:flex;justify-content:space-between;gap:8px;align-items:start}.platform{font-size:11px;color:var(--blue);font-weight:800;text-transform:uppercase;letter-spacing:.8px}.account h3{margin:4px 0 8px;font-size:16px;overflow-wrap:anywhere}.status{font-size:11px;padding:4px 8px;border-radius:30px;background:#263550;color:#dce7ff;white-space:nowrap}.status.active{background:#173c36;color:#9af0d0}.status.warn{background:#49391f;color:#ffdc91}.status.off{background:#482432;color:#ffb8c5}.handle{color:var(--muted);font-size:12px;overflow-wrap:anywhere}.notes{white-space:pre-wrap;overflow-wrap:anywhere;font-size:13px;margin:12px 0;min-height:18px}.meta{display:flex;gap:12px;flex-wrap:wrap;color:var(--muted);font-size:11px;border-top:1px solid var(--line);padding-top:10px}.actions{display:flex;gap:7px;margin-top:12px}.actions button{flex:1}.empty{grid-column:1/-1;text-align:center;padding:45px 15px;color:var(--muted);border:1px dashed var(--line);border-radius:14px}.note{font-size:12px;color:var(--muted);margin-top:14px}.notice{display:none;background:#183a33;border:1px solid #286755;color:#b9ffe7;padding:10px 12px;border-radius:10px;margin-bottom:12px}.foot{font-size:11px;color:var(--muted);text-align:center;margin:18px 0 4px}
+@media(max-width:850px){.layout{grid-template-columns:1fr}.cards{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:560px){.wrap{padding:13px}.stats{grid-template-columns:repeat(2,1fr);gap:9px}.stat{padding:12px}.stat strong{font-size:25px}.cards{grid-template-columns:1fr}.head h1{font-size:20px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="head">
+ <div class="brand"><div class="logo">◎</div><div><div class="eyebrow">PERSONAL WORKSPACE</div><h1>Social Account Manager</h1><div class="muted" style="font-size:13px">Bảng quản lý Facebook & TikTok</div></div></div>
+ <div class="pill">● Lưu dữ liệu trên trình duyệt này</div>
+</header>
+<section class="stats">
+ <div class="stat"><div class="label">TỔNG TÀI KHOẢN</div><strong id="total">0</strong><div class="hint">Tất cả hồ sơ đã lưu</div></div>
+ <div class="stat"><div class="label">FACEBOOK</div><strong id="fb">0</strong><div class="hint">Tài khoản Facebook</div></div>
+ <div class="stat"><div class="label">TIKTOK</div><strong id="tt">0</strong><div class="hint">Tài khoản TikTok</div></div>
+ <div class="stat"><div class="label">CẦN KIỂM TRA</div><strong id="check">0</strong><div class="hint">Xác minh hoặc kiểm tra lại</div></div>
+</section>
+<div class="layout">
+<section class="panel">
+ <h2 id="formTitle">＋ Thêm tài khoản</h2>
+ <div id="notice" class="notice"></div>
+ <form id="accountForm">
+  <input type="hidden" id="editId">
+  <div class="field"><label for="platform">NỀN TẢNG</label><select id="platform"><option>Facebook</option><option>TikTok</option></select></div>
+  <div class="field"><label for="label">TÊN GỌI / MÃ NỘI BỘ *</label><input id="label" maxlength="80" required placeholder="Ví dụ: FB-01"></div>
+  <div class="field"><label for="handle">USERNAME / LINK HỒ SƠ</label><input id="handle" maxlength="250" placeholder="@username hoặc link hồ sơ"></div>
+  <div class="field"><label for="status">TRẠNG THÁI</label><select id="status"><option>Chưa kiểm tra</option><option>Đang hoạt động</option><option>Cần xác minh</option><option>Tạm khóa</option><option>Đã ngừng</option></select></div>
+  <div class="field"><label for="checked">NGÀY KIỂM TRA</label><input id="checked" type="date"></div>
+  <div class="field"><label for="reminder">NGÀY NHẮC</label><input id="reminder" type="date"></div>
+  <div class="field"><label for="notes">GHI CHÚ</label><textarea id="notes" maxlength="2000" placeholder="Tình trạng, việc cần làm, ghi chú nội bộ..."></textarea></div>
+  <button class="btn full" type="submit" id="saveBtn">Lưu tài khoản</button>
+  <button class="btn secondary full" type="button" id="cancelBtn" style="display:none">Hủy chỉnh sửa</button>
+ </form>
+ <div class="note">Không nhập mật khẩu, mã 2FA, cookie hoặc mã khôi phục. Dữ liệu chỉ nằm trong localStorage của trình duyệt hiện tại.</div>
+</section>
+<section class="panel">
+ <div style="display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:13px"><h2 style="margin:0">Danh sách tài khoản</h2><div class="toolbar" style="margin:0"><button class="btn secondary" id="exportBtn">Xuất JSON</button><button class="btn secondary" id="importBtn">Nhập JSON</button><input type="file" id="importFile" accept=".json,application/json" hidden></div></div>
+ <div class="toolbar"><input id="search" placeholder="Tìm theo tên hoặc username..."><select id="filter"><option value="">Tất cả nền tảng</option><option>Facebook</option><option>TikTok</option></select><select id="statusFilter"><option value="">Mọi trạng thái</option><option>Chưa kiểm tra</option><option>Đang hoạt động</option><option>Cần xác minh</option><option>Tạm khóa</option><option>Đã ngừng</option></select></div>
+ <div id="cards" class="cards"></div>
+</section>
+</div>
+<div class="foot">Social Account Manager • Bản web cục bộ • Không tự đăng nhập hay tự động tương tác với nền tảng</div>
+</div>
+<script>
+const KEY='social_account_manager_v1';
+let accounts=[];
+try{accounts=JSON.parse(localStorage.getItem(KEY)||'[]');if(!Array.isArray(accounts))accounts=[]}catch(e){accounts=[]}
+const $=id=>document.getElementById(id);
+const fields=['platform','label','handle','status','checked','reminder','notes'];
+function save(){localStorage.setItem(KEY,JSON.stringify(accounts));render()}
+function esc(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function toast(msg){$('notice').textContent=msg;$('notice').style.display='block';setTimeout(()=>$('notice').style.display='none',2600)}
+function resetForm(){$('accountForm').reset();$('editId').value='';$('formTitle').textContent='＋ Thêm tài khoản';$('saveBtn').textContent='Lưu tài khoản';$('cancelBtn').style.display='none'}
+function render(){
+ $('total').textContent=accounts.length;$('fb').textContent=accounts.filter(a=>a.platform==='Facebook').length;$('tt').textContent=accounts.filter(a=>a.platform==='TikTok').length;$('check').textContent=accounts.filter(a=>['Chưa kiểm tra','Cần xác minh','Tạm khóa'].includes(a.status)).length;
+ const q=$('search').value.trim().toLowerCase(), pf=$('filter').value, sf=$('statusFilter').value;
+ const rows=accounts.filter(a=>(!pf||a.platform===pf)&&(!sf||a.status===sf)&&(!q||[a.label,a.handle,a.notes].join(' ').toLowerCase().includes(q))).sort((a,b)=>b.updatedAt-a.updatedAt);
+ $('cards').innerHTML=rows.length?rows.map(a=>{
+ let cls=a.status==='Đang hoạt động'?'active':(['Cần xác minh','Chưa kiểm tra'].includes(a.status)?'warn':(['Tạm khóa','Đã ngừng'].includes(a.status)?'off':''));
+ return `<article class="account"><div class="account-top"><div><div class="platform">${esc(a.platform)}</div><h3>${esc(a.label)}</h3><div class="handle">${esc(a.handle||'Chưa thêm username/link')}</div></div><span class="status ${cls}">${esc(a.status)}</span></div><div class="notes">${esc(a.notes||'Chưa có ghi chú')}</div><div class="meta"><span>Kiểm tra: ${esc(a.checked||'—')}</span><span>Nhắc: ${esc(a.reminder||'—')}</span></div><div class="actions"><button class="btn secondary" onclick="editAccount('${a.id}')">Sửa</button><button class="btn danger" onclick="deleteAccount('${a.id}')">Xóa</button></div></article>`
+ }).join(''):'<div class="empty">Chưa có tài khoản phù hợp.<br>Thêm tài khoản bằng biểu mẫu bên trái.</div>';
+}
+$('accountForm').addEventListener('submit',e=>{e.preventDefault();const id=$('editId').value;const old=accounts.find(a=>a.id===id);const item={id:id||crypto.randomUUID(),updatedAt:Date.now()};fields.forEach(f=>item[f]=$ (f).value.trim());if(old)item.createdAt=old.createdAt;else item.createdAt=Date.now();if(old)accounts=accounts.map(a=>a.id===id?item:a);else accounts.push(item);save();resetForm();toast(old?'Đã cập nhật tài khoản.':'Đã thêm tài khoản.')});
+window.editAccount=id=>{const a=accounts.find(x=>x.id===id);if(!a)return;$('editId').value=id;fields.forEach(f=>$(f).value=a[f]||'');$('formTitle').textContent='✎ Chỉnh sửa tài khoản';$('saveBtn').textContent='Lưu thay đổi';$('cancelBtn').style.display='block';window.scrollTo({top:0,behavior:'smooth'})};
+window.deleteAccount=id=>{const a=accounts.find(x=>x.id===id);if(!a||!confirm(`Xóa mục "${a.label}"?`))return;accounts=accounts.filter(x=>x.id!==id);save();toast('Đã xóa tài khoản.')};
+$('cancelBtn').onclick=resetForm;['search','filter','statusFilter'].forEach(id=>$(id).addEventListener(id==='search'?'input':'change',render));
+$('exportBtn').onclick=()=>{const blob=new Blob([JSON.stringify(accounts,null,2)],{type:'application/json'});const u=URL.createObjectURL(blob);const a=document.createElement('a');a.href=u;a.download='social-accounts-backup.json';a.click();URL.revokeObjectURL(u);toast('Đã xuất file sao lưu.')};
+$('importBtn').onclick=()=>$('importFile').click();
+$('importFile').onchange=async e=>{const file=e.target.files[0];if(!file)return;try{const data=JSON.parse(await file.text());if(!Array.isArray(data)||!data.every(a=>a&&['Facebook','TikTok'].includes(a.platform)&&a.label))throw Error();if(!confirm('Nhập dữ liệu sẽ thay thế danh sách hiện tại. Tiếp tục?'))return;accounts=data.map(a=>({...a,id:a.id||crypto.randomUUID(),updatedAt:a.updatedAt||Date.now()}));save();toast('Đã nhập dữ liệu.')}catch(err){alert('File JSON không hợp lệ hoặc không đúng định dạng.')}finally{e.target.value=''}};
+render();
+</script>
+</body></html>
